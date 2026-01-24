@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p class="lbl">Message: <span id="message"></span></p>
+    <p class="lbl">Numbre: <span id="number">100</span></p> 
+    <p class="lbl">Score: <span id="score">12</span></p>
+    <input id="guess" type="text"> <br><br>
+
+    <button id="btnAgain" >Again</button>
+</body>
+
+<script>
+    var btnAgain = document.getElementById("btnAgain");
+    var message = document.getElementById("message");
+    var number = document.getElementById("number");
+    var score = document.getElementById("score");
+    var guess = document.getElementById("guess");
+    var labels = document.querySelectorAll('.lbl');
+
+    btnAgain.addEventListener("click", function() {
+        var secretNumber = Math.trunc(Math.random() * 20) + 1;
+
+        message.textContent = 'Start guessing...';
+        number.textContent = '?';
+        score.textContent = 20;
+        guess.value = '';
+
+        labels.forEach(function (item) {
+            item.style.color = '#fff';
+        });
+
+        document.body.style.backgroundColor = '#222';
+        document.querySelector('#number').style.width = '15rem';
+        document.querySelector('#message').style.color = '#ffff';
+        document.querySelector('#number').style.color = '#ffff';
+        document.querySelector('#score').style.color = '#ffff';
+
+    })
+</script>
+</html>
