@@ -63,9 +63,34 @@
             }
         }
         if(count > 0) {
+
             console.log(`${game.scored[i]} have ${count} goals`);
         }
     }
+
+    //Question 3:
+    console.log('Odd of victory ' + game.team1 + ': ' + game.odds.team1);
+    console.log('Odd of draw: ' + game.odds.x);
+    console.log('Odd of victory ' + game.team2 + ' :' + game.odds.team2);
+    
+    //Question 4:
+    var scorers = {}
+
+    for(var i = 0; i < game.scored.length; i++) {
+        var player = game.scored[i];
+        
+        if( scorers[player]) {
+            scorers[player]++;
+        }
+        else {
+            scorers[player] = 1
+        }
+    }
+
+    console.log(scorers);
+    
+    
+    
 
 </script>
 </html>
