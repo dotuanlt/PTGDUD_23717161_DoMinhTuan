@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>Dolphins</td>
+        </tr>
+        <tr>
+            <td><label for="">Score 1:</label></td>
+            <td><input id="DolScore1" type="text"></td>
+        </tr>
+        <tr>
+            <td><label for="">Score 2:</label></td>
+            <td><input id="DolScore2" type="text"></td>
+        </tr>
+        <tr>
+            <td><label for="">Score 3:</label></td>
+            <td><input id="DolScore3" type="text"></td>
+        </tr>
+        <tr>
+            <td><label for="">Average Dolphins Team: </label></td>
+            <td><input id="DolAverage" type="text" disabled></td>
+        </tr>
+
+        <tr>
+            <td>Koalas</td>
+        </tr>
+        <tr>
+            <td><label for="">Score 1:</label></td>
+            <td><input id="KoaScore1" type="text"></td>
+        </tr>
+        <tr>
+            <td><label for="">Score 2:</label></td>
+            <td><input id="KoaScore2" type="text"></td>
+        </tr>
+        <tr>
+            <td><label for="">Score 3:</label></td>
+            <td><input id="KoaScore3" type="text"></td>
+        </tr>
+        <tr>
+            <td><label for="">Average Koalas Team: </label></td>
+            <td><input id="KoaAverage" type="text" disabled></td>
+        </tr>
+    </table>
+
+    <br>
+    <label for="">Team win: <span id="TeamWin"> </span></label>
+
+    <br>
+    <br>
+    <button id="btnClick">Click</button>
+
+</body>
+
+<script>
+    var DolScore1 = document.getElementById("DolScore1");
+    var DolScore2 = document.getElementById("DolScore2");
+    var DolScore3 = document.getElementById("DolScore3");
+    var DolAverage = document.getElementById("DolAverage");
+
+    var KoaScore1 = document.getElementById("KoaScore1");
+    var KoaScore2 = document.getElementById("KoaScore2");
+    var KoaScore3 = document.getElementById("KoaScore3");
+    var KoaAverage = document.getElementById("KoaAverage");
+
+    var TeamWin = document.getElementById("TeamWin");
+    var btnClick = document.getElementById("btnClick");
+
+    btnClick.addEventListener("click", function() {
+        DolArg = (parseInt(DolScore1.value) + parseInt(DolScore2.value) + parseInt(DolScore3.value)) / 3;
+        KoaArg = (parseInt(KoaScore1.value) + parseInt(KoaScore2.value) + parseInt(KoaScore3.value)) / 3;
+
+        DolAverage.value = DolArg.toFixed(2);
+        KoaAverage.value = KoaArg.toFixed(2);
+
+        if (DolArg >= KoaArg*2) {
+            TeamWin.textContent = `Dolphins Win (${DolArg} vs ${KoaArg})`;
+         } 
+        else if (KoaArg >= DolArg*2) {
+            TeamWin.textContent = `Koalas Win (${KoaArg} vs ${DolArg})`;
+        } 
+        else {
+            TeamWin.textContent = "No team wins";
+        }
+
+    })
+    
+
+</script>
+</html>
