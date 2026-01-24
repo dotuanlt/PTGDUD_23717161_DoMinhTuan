@@ -3,6 +3,7 @@ import './App.css'
 import Alert from './component/Alert'
 import { useState } from 'react'
 import LoginForm from './component/LoginForm'
+import Responsive from './component/Responsive'
 
 function App() {
   const [bgColor, setBgColor] = useState('#4d83d2')
@@ -23,8 +24,10 @@ function App() {
     // </div>
 
     //Bài 4:
-    <LoginForm></LoginForm>
+    // <LoginForm></LoginForm>
 
+    //Bài 5:
+    <Responsive></Responsive>
   )
   
 }
