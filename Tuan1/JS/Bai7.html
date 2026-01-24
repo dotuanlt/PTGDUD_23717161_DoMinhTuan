@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <td id="MarkName">Mark</td>
+        </tr>
+        <tr>
+            <td>Mass: </td>
+            <td><input id="massMark" type="text"></td>
+        </tr>
+        <tr>
+            <td>Height: </td>
+            <td><input id="heightMark" type="text"></td>
+        </tr>
+        <tr>
+            <td>BMI Mark: </td>
+            <td><span id="BMIMark"> </span></td>
+        </tr>
+
+        <tr>
+            <td id="JohnName">John</td>
+        </tr>
+        <tr>
+            <td>Mass: </td>
+            <td><input id="massJohn" type="text"></td>
+        </tr>
+        <tr>
+            <td>Height: </td>
+            <td><input id="heightJohn" type="text"></td>
+        </tr>
+        <tr>
+            <td>BMI Join: </td>
+            <td><span id="BMIJohn"> </span></td>
+        </tr>
+
+    </table>
+    <br>
+
+    <button id="btnClick" style="font-size: 16px; background-color: chartreuse; font-weight: bold;"> Click </button><br>
+
+    <span id="result"></span>
+</body>
+
+<script>
+    var MarkName = document.getElementById("MarkName")
+    var JohnName = document.getElementById("JohnName")
+    var massMark = document.getElementById("massMark")
+    var heightMark = document.getElementById("heightMark")
+    var massJohn = document.getElementById("massJohn")
+    var heightJohn = document.getElementById("heightJohn")
+    var MarkBMI = document.getElementById("BMIMark")
+    var JohnBMI = document.getElementById("BMIJohn")
+    var result = document.getElementById("result")
+
+    function person(fullName, mass, height) {
+        this.fullName = fullName;
+        this.mass = mass;
+        this.height = height;
+        this.BMI = BMI(mass, height);
+    }
+
+    function BMI(mass, height) {
+        return mass/(height*height)
+    }
+
+    var btn = document.getElementById("btnClick")
+    btn.addEventListener('click', function(){
+        var Mark = new person(MarkName, parseFloat(massMark.value), parseFloat(heightMark.value));
+        var John = new person(JohnName, parseFloat(massJohn.value), parseFloat(heightJohn.value));
+        MarkBMI.textContent = Mark.BMI.toFixed(2)
+        JohnBMI.textContent = John.BMI.toFixed(2)
+         
+        if(Mark.BMI > John.BMI) {
+            result.textContent = `Mark's BMI ${Mark.BMI.toFixed(2)} is higher than John's BMI ${John.BMI.toFixed(2)}`
+        }
+        else if(John.BMI > Mark.BMI) {
+            result.textContent = `John's BMI ${John.BMI.toFixed(2)} is higher than Mark's BMI ${Mark.BMI.toFixed(2)}`
+        }
+        else {
+            result.textContent = `John's BMI ${John.BMI.toFixed(2)} is equal Mark's BMI ${Mark.BMI.toFixed(2)}`
+        }
+        
+    }
+    );
+</script>
+</html>
