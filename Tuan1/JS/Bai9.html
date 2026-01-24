@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Nhập nhiệt độ cho các ngày <i>(cách nhau bởi dấu ", ")</i>:</h3>
+    <input id="arrTemp" type="text" style="width: 200px; height: 25px;"> <br>
+    <br>
+    <button id="btnTemp" style="font-size: 16px; background-color: aqua; font-weight: bold;">Print</button>
+
+    <br><br>
+    <span id="strTemp"></span>
+</body>
+
+<script>
+    var arrTemp = document.getElementById("arrTemp");
+    var btnTemp = document.getElementById("btnTemp");
+    var strTemp = document.getElementById("strTemp");
+    
+    btnTemp.addEventListener('click', function() {
+        var arr = arrTemp.value.split(", ");
+        var str = '';
+        var strLog = '';
+        for(var i = 0; i < arr.length; i++) {
+            strLog += `... ${arr[i]}ºC in ${i + 1} days `; 
+            str += `... ${arr[i]}ºC in ${i + 1} days <br>`; 
+        }
+        console.log(strLog);
+        strTemp.innerHTML = str;
+    })
+</script>
+</html>
