@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>Mark</td>
+        </tr>
+        <tr>
+            <td>Mass: </td>
+            <td><input id="massMark" type="text"></td>
+        </tr>
+        <tr>
+            <td>Height: </td>
+            <td><input id="heightMark" type="text"></td>
+        </tr>
+
+        <tr>
+            <td>John</td>
+        </tr>
+        <tr>
+            <td>Mass: </td>
+            <td><input id="massJohn" type="text"></td>
+        </tr>
+        <tr>
+            <td>Height: </td>
+            <td><input id="heightJohn" type="text"></td>
+        </tr>
+
+    </table>
+
+    <br>
+    <label for="">BMI Mark: </label>
+    <label id="BMIMark" for=""></label>
+    <br>
+    <label for="">BMI Join: </label>
+    <label id="BMIJohn" for=""></label>
+    <br>
+
+    <textarea name="" id="conclude" disabled rows="3" cols="30"></textarea> <br>
+
+    <button id="btnClick">Click</button>
+</body>
+
+<script>
+    var massMark = document.getElementById("massMark")
+    var heightMark = document.getElementById("heightMark")
+    var massJohn = document.getElementById("massJohn")
+    var heightJohn = document.getElementById("heightJohn")
+    var MarkBMI = document.getElementById("BMIMark")
+    var JohnBMI = document.getElementById("BMIJohn")
+    var conclude = document.getElementById("conclude")
+
+    var btn = document.getElementById("btnClick")
+    btn.addEventListener('click', function(){
+        var BMIMark = parseFloat(massMark.value)/(parseFloat(heightMark.value)*parseFloat(heightMark.value))
+        var BMIJoin = parseFloat(massJohn.value)/(parseFloat(heightJohn.value)*parseFloat(heightJohn.value))
+        var content
+        if(BMIMark > BMIJoin) {
+            content = `Chỉ số BMI của Mark (${BMIMark.toFixed(2)}) cao hơn chỉ số BMI của John (${BMIJoin.toFixed(2)}).`
+        }
+        else if(BMIMark < BMIJoin) {
+            content = `Chỉ số BMI của Mark (${BMIMark.toFixed(2)}) thấp hơn chỉ số BMI của John (${BMIJoin.toFixed(2)}).`
+        }
+        else {
+            content = `Chỉ số BMI của Mark (${BMIMark.toFixed(2)}) bằng chỉ số BMI của John (${BMIJoin.toFixed(2)}).`      
+        }
+
+        console.log(content);
+        MarkBMI.textContent = BMIMark.toFixed(2)
+        JohnBMI.textContent = BMIJoin.toFixed(2)
+        conclude.textContent = content
+    }
+    );
+</script>
+</html>
