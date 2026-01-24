@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Nhập số tiền của hoá đơn:</h3>
+    <input id="bill" type="text" style="width: 200px; height: 25px;"> <br>
+    <br>
+    <button id="cal" style="font-size: 16px; background-color: aqua; font-weight: bold;">Caculate</button>
+
+    <br><br>
+    <span id="total"></span>
+</body>
+
+<script>
+    var bill = document.getElementById("bill");
+    var cal = document.getElementById("cal");
+    var total = document.getElementById("total");
+
+    cal.addEventListener("click", function() {
+        var tip = (parseFloat(bill.value) >= 50 && parseFloat(bill.value) <= 300) 
+            ? (parseFloat(bill.value) * 0.15) : (parseFloat(bill.value) * 0.2);
+
+        var sum = parseFloat(bill.value) + tip;
+
+        total.textContent = `The bill was ${parseFloat(bill.value)}, the tip was ${tip}, and the total value ${sum}`;
+    }) 
+
+
+</script>
+</html>
