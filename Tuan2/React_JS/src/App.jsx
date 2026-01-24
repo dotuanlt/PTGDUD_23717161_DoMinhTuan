@@ -7,6 +7,7 @@ import Responsive from './component/Responsive'
 import Header from './component/Header'
 import StudentInfo from './component/StudentInfo'
 import Footer from './component/Footer'
+import CounterApp from './component/CounterApp'
 
 function App() {
   // const [bgColor, setBgColor] = useState('#4d83d2')
@@ -33,13 +34,15 @@ function App() {
     // <Responsive></Responsive>
 
     //Tuần 2: Bài 1
-    <>
-      <Header name = 'Đỗ Minh Tuấn'></Header>
-      <StudentInfo name = 'Đỗ Minh Tuấn' mssv = '23717161' className = 'DHKTPM19BTT'>
+    // <>
+    //   <Header name = 'Đỗ Minh Tuấn'></Header>
+    //   <StudentInfo name = 'Đỗ Minh Tuấn' mssv = '23717161' className = 'DHKTPM19BTT'>
 
-      </StudentInfo>
-      <Footer name = 'Đỗ Minh Tuấn'></Footer>
-    </>
+    //   </StudentInfo>
+    //   <Footer name = 'Đỗ Minh Tuấn'></Footer>
+    // </>
+
+    <CounterApp></CounterApp>
     
   )
   
