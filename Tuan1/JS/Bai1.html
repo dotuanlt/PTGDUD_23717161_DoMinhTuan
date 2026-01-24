@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>Mark</td>
+        </tr>
+        <tr>
+            <td>Mass: </td>
+            <td><input id="massMark" type="text"></td>
+        </tr>
+        <tr>
+            <td>Height: </td>
+            <td><input id="heightMark" type="text"></td>
+        </tr>
+        <tr>
+            <td>BMI Mark: </td>
+            <td><span id="BMIMark"> </span></td>
+        </tr>
+
+        <tr>
+            <td>John</td>
+        </tr>
+        <tr>
+            <td>Mass: </td>
+            <td><input id="massJohn" type="text"></td>
+        </tr>
+        <tr>
+            <td>Height: </td>
+            <td><input id="heightJohn" type="text"></td>
+        </tr>
+        <tr>
+            <td>BMI Join: </td>
+            <td><span id="BMIJohn"> </span></td>
+        </tr>
+
+    </table>
+    <br>
+
+    <button id="btnClick" style="font-size: 16px; background-color: chartreuse; font-weight: bold;"> Click </button>
+</body>
+
+<script>
+    var massMark = document.getElementById("massMark")
+    var heightMark = document.getElementById("heightMark")
+    var massJohn = document.getElementById("massJohn")
+    var heightJohn = document.getElementById("heightJohn")
+    var MarkBMI = document.getElementById("BMIMark")
+    var JohnBMI = document.getElementById("BMIJohn")
+
+    var btn = document.getElementById("btnClick")
+    btn.addEventListener('click', function(){
+        var BMIMark = parseFloat(massMark.value)/(parseFloat(heightMark.value)*parseFloat(heightMark.value))
+        var BMIJoin = parseFloat(massJohn.value)/(parseFloat(heightJohn.value)*parseFloat(heightJohn.value))
+        console.log(BMIMark)
+        console.log(BMIJoin)
+        MarkBMI.textContent = BMIMark.toFixed(2)
+        JohnBMI.textContent = BMIJoin.toFixed(2)
+    }
+    );
+</script>
+</html>
