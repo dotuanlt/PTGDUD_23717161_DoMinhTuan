@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h4>Nhập tên các cầu thủ: </h4>
+    <input id="namePlayers" type="text">
+    <button id="btnClick">Click</button>
+    <span id="result"></span>
+</body>
+
+<script>
+    const game = { 
+        team1: 'Bayern Munich', 
+        team2: 'Borrussia Dortmund', 
+        players: [ 
+            [ 
+                'Neuer', 
+                'Pavard', 
+                'Martinez', 
+                'Alaba', 
+                'Davies', 
+                'Kimmich', 
+                'Goretzka', 
+                'Coman', 
+                'Muller', 
+                'Gnarby', 
+                'Lewandowski', 
+            ], 
+            [ 
+                'Burki', 
+                'Schulz', 
+                'Hummels', 
+                'Akanji', 
+                'Hakimi', 
+                'Weigl', 
+                'Witsel', 
+                'Hazard', 
+                'Brandt', 
+                'Sancho', 
+                'Gotze', 
+            ], 
+        ], 
+        score: '4:0', 
+        scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'], 
+        date: 'Nov 9th, 2037', 
+        odds: { 
+            team1: 1.33, 
+            x: 3.25, 
+            team2: 6.5
+        }, 
+    }; 
+
+    //Question 1:
+    for(var i = 0; i < game.scored.length; i++) {
+        var count = 1;
+        for(var y = i + 1; y < game.scored.length; y++) {
+            if(game.scored[i] === game.scored[y]) {
+                count++;
+            }
+        }
+        if(count > 0) {
+            console.log(`${game.scored[i]} have ${count} goals`);
+        }
+    }
+
+</script>
+</html>

@@ -1,0 +1,15 @@
+.success{
+    background-color: green;
+    margin: 10px; 
+}
+
+.warning{
+    background-color: rgb(214, 219, 67);
+    color: #000;
+    margin: 10px;
+}
+
+.error{
+    background-color: red;
+    margin: 10px;
+}
