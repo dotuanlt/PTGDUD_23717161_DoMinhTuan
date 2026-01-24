@@ -1,0 +1,26 @@
+div{
+    background-color: blanchedalmond;
+    width: 200px;
+    height: 450px;
+    border-radius: 50px;
+}
+
+h2{
+    font-size: 20px;
+    color: #000;
+}
+
+p{
+    font-size: 18px;
+    color: #000;
+}
+
+button{
+    background-color: lightsalmon;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+button:hover{
+    background-color: salmon;
+}
