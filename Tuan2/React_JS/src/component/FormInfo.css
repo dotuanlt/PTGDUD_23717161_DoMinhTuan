@@ -1,0 +1,14 @@
+.tblStyle {
+    width: 50%;
+    margin: 20px auto; 
+    font-Size: 24px;
+    border-Collapse: collapse;
+    table-Layout: fixed;
+}
+
+.celStyle {
+    border: 1px solid black;
+    padding: 10px;
+    word-Wrap: break-word;
+    width: 400px;
+}

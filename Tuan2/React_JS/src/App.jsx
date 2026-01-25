@@ -8,6 +8,7 @@ import Header from './component/Header'
 import StudentInfo from './component/StudentInfo'
 import Footer from './component/Footer'
 import CounterApp from './component/CounterApp'
+import FormInfo from './component/FormInfo'
 
 function App() {
   // const [bgColor, setBgColor] = useState('#4d83d2')
@@ -42,8 +43,12 @@ function App() {
     //   <Footer name = 'Đỗ Minh Tuấn'></Footer>
     // </>
 
-    <CounterApp></CounterApp>
-    
+    //Tuần 2: Bài 2
+    // <CounterApp></CounterApp>
+
+    //Tuần 2: Bài 3
+    <FormInfo></FormInfo>
+
   )
   
 }
