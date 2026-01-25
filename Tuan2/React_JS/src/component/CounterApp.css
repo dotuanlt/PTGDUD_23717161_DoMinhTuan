@@ -1,0 +1,16 @@
+h1 {
+    margin: 20px;
+}
+
+button, input {
+    margin: 10px;
+    font-size: 20px;
+}
+
+.btnIncrease, .btnReduce {
+    background-color: orange;
+}
+
+.btnReset {
+    background-color: green;
+}
