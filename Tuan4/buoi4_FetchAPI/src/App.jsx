@@ -5,13 +5,17 @@ import "./App.css";
 
 function App() {
   const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  // const [loading, setLoading] = useState(true); //Bài 2
+  // const [error, setError] = useState(false);   //Bài 2
   const [userId, setUserId] = useState("");
   const [user, setUser] = useState(null);
   const [posts, setPosts] = useState([]);
   const [filteredPosts, setFilteredPosts] = useState([]);
   const [search, setSearch] = useState("");
+  const [todos, setTodos] = useState([]);
+  const [title, setTitle] = useState("");
+  const [loading, setLoading] = useState(false); //Bài 5
+  const [error, setError] = useState(null); //Bài 5
 
   //Bài 1:
   // useEffect(() => {
@@ -73,26 +77,83 @@ function App() {
   // }
 
   // Bài 4:
+  // useEffect(() => {
+  //   async function fetchPosts() {
+  //     const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+  //     const data = await res.json();
+
+  //     setPosts(data);
+  //     setFilteredPosts(data);
+  //   }
+
+  //   fetchPosts();
+  // }, []);
+
+  // function searchTitle(value) {
+  //   setSearch(value);
+
+  //   const result = posts.filter((post) =>
+  //     post.title.toLowerCase().includes(value.toLowerCase()),
+  //   );
+
+  //   setFilteredPosts(result);
+  // }
+
+  // Bài 5:
   useEffect(() => {
-    async function fetchPosts() {
-      const res = await fetch("https://jsonplaceholder.typicode.com/posts");
-      const data = await res.json();
-
-      setPosts(data);
-      setFilteredPosts(data);
-    }
-
-    fetchPosts();
+    fetchTodos();
   }, []);
 
-  function searchTitle(value) {
-    setSearch(value);
+  async function fetchTodos() {
+    try {
+      const res = await fetch(
+        "https://jsonplaceholder.typicode.com/todos?_limit=5",
+      );
+      const data = await res.json();
+      setTodos(data);
+    } catch (err) {
+      setError("Load error");
+    }
+  }
 
-    const result = posts.filter((post) =>
-      post.title.toLowerCase().includes(value.toLowerCase()),
-    );
+  async function addTodo() {
+    if (!title) return;
 
-    setFilteredPosts(result);
+    setLoading(true);
+
+    try {
+      const res = await fetch("https://jsonplaceholder.typicode.com/todos", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: title,
+          completed: false,
+        }),
+      });
+
+      const newTodo = await res.json();
+
+      setTodos([...todos, newTodo]);
+      setTitle("");
+    } catch (err) {
+      setError("Add error");
+    }
+
+    setLoading(false);
+  }
+
+  async function deleteTodo(id) {
+    try {
+      await fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
+        method: "DELETE",
+      });
+
+      setTodos(todos.filter((todo) => todo.id !== id));
+    } catch (err) {
+      setError("Delete error");
+    }
   }
 
   return (
@@ -154,7 +215,7 @@ function App() {
       } */}
 
       {/* Bài 4: */}
-      {
+      {/* {
         <div>
           <h2>Search Posts</h2>
 
@@ -175,6 +236,33 @@ function App() {
             >
               <h3>{post.title}</h3>
               <p>{post.body}</p>
+            </div>
+          ))}
+        </div>
+      } */}
+
+      {/* Bài 5: */}
+      {
+        <div>
+          <h1>Todo List</h1>
+
+          {error && <p>{error}</p>}
+
+          <input
+            type="text"
+            placeholder="Enter todo..."
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+
+          <button style={{margin: "15px"}} onClick={addTodo} disabled={loading}>
+            {loading ? "Adding..." : "Add"}
+          </button>
+
+          {todos.map((todo) => (
+            <div key={todo.id}>
+              {todo.title}
+              <button style={{margin: "15px"}} onClick={() => deleteTodo(todo.id)}>Delete</button>
             </div>
           ))}
         </div>
