@@ -9,6 +9,9 @@ function App() {
   const [error, setError] = useState(false);
   const [userId, setUserId] = useState("");
   const [user, setUser] = useState(null);
+  const [posts, setPosts] = useState([]);
+  const [filteredPosts, setFilteredPosts] = useState([]);
+  const [search, setSearch] = useState("");
 
   //Bài 1:
   // useEffect(() => {
@@ -52,21 +55,44 @@ function App() {
   // }, [])
 
   // Bài 3:
-  async function findUser() {
-    var url = `https://jsonplaceholder.typicode.com/users/${userId}`;
-    var res = await fetch(url);
+  // async function findUser() {
+  //   var url = `https://jsonplaceholder.typicode.com/users/${userId}`;
+  //   var res = await fetch(url);
 
-    try {
-      if (res.ok) {
-        var data = await res.json();
-        setUser(data);
-        console.log(data);
-      } else {
-        console.log("User not found");
-      }
-    } catch (error) {
-      console.log("error");
+  //   try {
+  //     if (res.ok) {
+  //       var data = await res.json();
+  //       setUser(data);
+  //       console.log(data);
+  //     } else {
+  //       console.log("User not found");
+  //     }
+  //   } catch (error) {
+  //     console.log("error");
+  //   }
+  // }
+
+  // Bài 4:
+  useEffect(() => {
+    async function fetchPosts() {
+      const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+      const data = await res.json();
+
+      setPosts(data);
+      setFilteredPosts(data);
     }
+
+    fetchPosts();
+  }, []);
+
+  function handleSearch(value) {
+    setSearch(value);
+
+    const result = posts.filter((post) =>
+      post.title.toLowerCase().includes(value.toLowerCase()),
+    );
+
+    setFilteredPosts(result);
   }
 
   return (
@@ -93,7 +119,7 @@ function App() {
     } */}
 
       {/* Bài 3: */}
-      {
+      {/* {
         <div>
           <span>Nhập ID của User cần tìm: </span>
           <input
@@ -124,6 +150,34 @@ function App() {
               </tr>
             </tbody>
           </table>
+        </div>
+      } */}
+
+      {/* Bài 4: */}
+      {
+        <div>
+          <h2>Search Posts</h2>
+
+          <input
+            type="text"
+            placeholder="Search title..."
+            value={search}
+            onChange={(e) => handleSearch(e.target.value)}
+          />
+
+          {filteredPosts.map((post) => (
+            <div
+              key={post.id}
+              style={{
+                border: "1px solid gray",
+                margin: "10px",
+                padding: "10px",
+              }}
+            >
+              <h3>{post.title}</h3>
+              <p>{post.body}</p>
+            </div>
+          ))}
         </div>
       }
     </>
