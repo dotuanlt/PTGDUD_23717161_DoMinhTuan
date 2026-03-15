@@ -85,7 +85,7 @@ function App() {
     fetchPosts();
   }, []);
 
-  function handleSearch(value) {
+  function searchTitle(value) {
     setSearch(value);
 
     const result = posts.filter((post) =>
@@ -162,16 +162,15 @@ function App() {
             type="text"
             placeholder="Search title..."
             value={search}
-            onChange={(e) => handleSearch(e.target.value)}
+            onChange={(e) => searchTitle(e.target.value)}
           />
 
           {filteredPosts.map((post) => (
             <div
               key={post.id}
               style={{
-                border: "1px solid gray",
-                margin: "10px",
-                padding: "10px",
+                border: "1px solid",
+                margin: "10px"
               }}
             >
               <h3>{post.title}</h3>
