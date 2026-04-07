@@ -5,6 +5,8 @@ import ComponentB from "./components/ComponentB";
 import ThemeComponent from "./components/ThemeComponent";
 import ThemeAtom from "./states/ThemeAtom";
 import UserComponent from "./components/UserComponent";
+import TodoInput from "./components/TodoInput";
+import ToDoList from "./components/ToDoList";
 
 function App() {
   var theme = useRecoilValue(ThemeAtom);
@@ -13,7 +15,7 @@ function App() {
   return (
     <>
       <div className={theme}>
-        <div style={{margin: "10px", border: "1px solid red", padding: "20px"}}>
+        {/* <div style={{margin: "10px", border: "1px solid red", padding: "20px"}}>
           <ComponentA></ComponentA>
           <ComponentB></ComponentB>
         </div>
@@ -22,7 +24,10 @@ function App() {
         </div>
         <div style={{margin: "10px", border: "1px solid red", padding: "20px"}}>
           <UserComponent></UserComponent>
-        </div>
+        </div> */}
+
+        <TodoInput></TodoInput>
+        <ToDoList></ToDoList>
       </div>
     </>
   );
