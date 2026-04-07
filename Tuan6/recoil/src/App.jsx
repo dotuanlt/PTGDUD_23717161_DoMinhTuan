@@ -7,6 +7,8 @@ import ThemeAtom from "./states/ThemeAtom";
 import UserComponent from "./components/UserComponent";
 import TodoInput from "./components/TodoInput";
 import ToDoList from "./components/ToDoList";
+import AddCartComponent from "./components/AddCartComponent";
+import CartComponent from "./components/CartComponent";
 
 function App() {
   var theme = useRecoilValue(ThemeAtom);
@@ -26,8 +28,11 @@ function App() {
           <UserComponent></UserComponent>
         </div> */}
 
-        <TodoInput></TodoInput>
-        <ToDoList></ToDoList>
+        {/* <TodoInput></TodoInput>
+        <ToDoList></ToDoList> */}
+
+        <AddCartComponent></AddCartComponent>
+        <CartComponent></CartComponent>
       </div>
     </>
   );
