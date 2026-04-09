@@ -1,142 +1,164 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import RecipeCard from '../components/RecipeCard'
-import { ChevronRight, Star, Clock, FileText, ThumbsUp, Reply, MoreHorizontal } from 'lucide-react'
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import RecipeCard from "../components/RecipeCard";
+import {
+  ChevronRight,
+  Star,
+  Clock,
+  FileText,
+  ThumbsUp,
+  Reply,
+  MoreHorizontal,
+} from "lucide-react";
 
 const recipeData = {
-  title: 'How to make a Strawberry Shortcake',
-  description: "It seems that there may be a misunderstanding. If you're asking how a user can make a Strawberry Shortcake, the process would be starting from the recipe preparation. It involves preparing the strawberries, making the shortcakes, preparing whipped cream, and finally assembling the shortcake.",
+  title: "How to make a Strawberry Shortcake",
+  description:
+    "It seems that there may be a misunderstanding. If you're asking how a user can make a Strawberry Shortcake, the process would be starting from the recipe preparation. It involves preparing the strawberries, making the shortcakes, preparing whipped cream, and finally assembling the shortcake.",
   author: {
-    name: 'Emma Gonzalez',
-    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop',
+    name: "Emma Gonzalez",
+    avatar:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop",
   },
-  time: '45 minutes',
+  time: "45 minutes",
   notes: 352,
   rating: 4.5,
-  heroImage: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=800&h=600&fit=crop',
+  heroImage:
+    "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=800&h=600&fit=crop",
   ingredients: [
-    'Yield: 4 generous servings',
-    '2 pints ripe, well-rinsed strawberries',
-    '1/2 cup sugar, or more to taste',
-    '4 cups flour',
-    '3 tablespoons sugar',
-    '1/4 teaspoon salt',
-    '5 teaspoons baking powder',
-    '1 1/4 cups butter',
-    '3 cups whipping cream',
-    '1/2 teaspoon vanilla extract',
+    "Yield: 4 generous servings",
+    "2 pints ripe, well-rinsed strawberries",
+    "1/2 cup sugar, or more to taste",
+    "4 cups flour",
+    "3 tablespoons sugar",
+    "1/4 teaspoon salt",
+    "5 teaspoons baking powder",
+    "1 1/4 cups butter",
+    "3 cups whipping cream",
+    "1/2 teaspoon vanilla extract",
   ],
   steps: [
     {
       number: 1,
-      text: 'Rinse and hull strawberries. Cut in half or slice, depending on size. Gently crush about a quarter of the berries with a fork to release their juices. Mix with remaining berries and the 1/2 cup of sugar, adding more sugar if necessary. Set aside, covered, for about half an hour to develop flavor.',
-      image: 'https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=600&h=400&fit=crop',
+      text: "Rinse and hull strawberries. Cut in half or slice, depending on size. Gently crush about a quarter of the berries with a fork to release their juices. Mix with remaining berries and the 1/2 cup of sugar, adding more sugar if necessary. Set aside, covered, for about half an hour to develop flavor.",
+      image:
+        "https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=600&h=400&fit=crop",
     },
     {
       number: 2,
-      text: 'Preheat oven to 450 degrees.',
+      text: "Preheat oven to 450 degrees.",
       image: null,
     },
     {
       number: 3,
-      text: 'Into a large mixing bowl, sift together flour, 3 tablespoons sugar, salt and baking powder. Add 3/4 cup of the butter, and cut into dry ingredients as for pastry. Add 1 1/2 cups cream, and mix to a soft dough. Knead the dough for one minute on a lightly floured pastry board, then roll out to about 1/2-inch thickness. Using a 3-inch biscuit cutter, cut an even number of rounds - 2 rounds per serving.',
-      image: 'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=600&h=400&fit=crop',
+      text: "Into a large mixing bowl, sift together flour, 3 tablespoons sugar, salt and baking powder. Add 3/4 cup of the butter, and cut into dry ingredients as for pastry. Add 1 1/2 cups cream, and mix to a soft dough. Knead the dough for one minute on a lightly floured pastry board, then roll out to about 1/2-inch thickness. Using a 3-inch biscuit cutter, cut an even number of rounds - 2 rounds per serving.",
+      image:
+        "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=600&h=400&fit=crop",
     },
     {
       number: 4,
-      text: 'Use a little of the butter to grease a baking sheet. Place half the rounds on it. Melt remaining butter and brush a little on the rounds, place remaining rounds on top. Bake for 10 to 15 minutes, or until golden brown.',
+      text: "Use a little of the butter to grease a baking sheet. Place half the rounds on it. Melt remaining butter and brush a little on the rounds, place remaining rounds on top. Bake for 10 to 15 minutes, or until golden brown.",
       image: null,
     },
     {
       number: 5,
-      text: 'Use a little of the butter to grease a baking sheet. Place half the rounds on it. Melt remaining butter and brush a little on the rounds, place remaining rounds on top. Bake for 10 to 15 minutes, or until golden brown.',
-      image: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=600&h=400&fit=crop',
+      text: "Use a little of the butter to grease a baking sheet. Place half the rounds on it. Melt remaining butter and brush a little on the rounds, place remaining rounds on top. Bake for 10 to 15 minutes, or until golden brown.",
+      image:
+        "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=600&h=400&fit=crop",
     },
     {
       number: 6,
-      text: 'Beat remaining cream until it thickens. Add vanilla. Beat again until thick.',
+      text: "Beat remaining cream until it thickens. Add vanilla. Beat again until thick.",
       image: null,
     },
   ],
-}
+};
 
 const comments = [
   {
     id: 1,
-    author: 'Jimmy Will',
-    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop',
-    time: '08:11 AM',
-    text: 'Lorem consectetur dolor adipi sit ulla ut laborie dolor anim et exer nullo dolore labori volu aliq ua qui esse anim. Non cupidat at sunt duo irul.',
+    author: "Jimmy Will",
+    avatar:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop",
+    time: "08:11 AM",
+    text: "Lorem consectetur dolor adipi sit ulla ut laborie dolor anim et exer nullo dolore labori volu aliq ua qui esse anim. Non cupidat at sunt duo irul.",
     likes: 0,
     replies: [],
   },
   {
     id: 2,
-    author: 'Alice Doll',
-    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop',
-    time: '08:12 AM',
-    text: 'Culpa anim pariatur deserunt reprehender fugiat incidunt exercitaion dolore et officia offic dul Lorem unt et ait do eu sed tempo. Tempo consectetur qui laboris nulla aliq at labore tempo culpa est deserunt reprehende.',
+    author: "Alice Doll",
+    avatar:
+      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop",
+    time: "08:12 AM",
+    text: "Culpa anim pariatur deserunt reprehender fugiat incidunt exercitaion dolore et officia offic dul Lorem unt et ait do eu sed tempo. Tempo consectetur qui laboris nulla aliq at labore tempo culpa est deserunt reprehende.",
     likes: 5,
     replies: [],
     images: [
-      'https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=200&h=200&fit=crop',
-      'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=200&h=200&fit=crop',
-      'https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=200&h=200&fit=crop',
+      "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=200&h=200&fit=crop",
+      "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=200&h=200&fit=crop",
+      "https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=200&h=200&fit=crop",
     ],
   },
   {
     id: 3,
-    author: 'Chris Nelson',
-    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop',
-    time: '09:42 AM',
-    text: 'Labore ex est anim minim officia anim consequat cilum deserunt panita...',
+    author: "Chris Nelson",
+    avatar:
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop",
+    time: "09:42 AM",
+    text: "Labore ex est anim minim officia anim consequat cilum deserunt panita...",
     likes: 0,
     replies: [],
   },
   {
     id: 4,
-    author: 'Emma Gonzalez',
-    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop',
-    time: '08:15 AM',
-    text: 'Deserunt minim inculpetur cilum mollit ab volupta excepteur minima enim ad abonum laboru. Milit commodo in do dolor ut in milit ed',
+    author: "Emma Gonzalez",
+    avatar:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop",
+    time: "08:15 AM",
+    text: "Deserunt minim inculpetur cilum mollit ab volupta excepteur minima enim ad abonum laboru. Milit commodo in do dolor ut in milit ed",
     likes: 0,
     replies: [],
     isAuthor: true,
   },
-]
+];
 
 const recentlyViewed = [
   {
-    id: 'cabbage-shrimp',
-    title: 'Salad with cabbage and shrimp',
-    image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=400&fit=crop',
-    time: '32 minutes',
+    id: "cabbage-shrimp",
+    title: "Salad with cabbage and shrimp",
+    image:
+      "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=400&fit=crop",
+    time: "32 minutes",
   },
   {
-    id: 'cove-beans',
-    title: 'Salad of cove beans, shrimp and potatoes',
-    image: 'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=400&h=400&fit=crop',
-    time: '20 minutes',
+    id: "cove-beans",
+    title: "Salad of cove beans, shrimp and potatoes",
+    image:
+      "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=400&h=400&fit=crop",
+    time: "20 minutes",
   },
   {
-    id: 'sunny-eggs',
-    title: 'Sunny-side up fried eggs',
-    image: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?w=400&h=400&fit=crop',
-    time: '18 minutes',
+    id: "sunny-eggs",
+    title: "Sunny-side up fried eggs",
+    image:
+      "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=400&h=400&fit=crop",
+    time: "18 minutes",
   },
   {
-    id: 'lotus-delight',
-    title: 'Lotus delight salad',
-    image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=400&fit=crop',
-    time: '20 minutes',
+    id: "lotus-delight",
+    title: "Lotus delight salad",
+    image:
+      "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=400&fit=crop",
+    time: "20 minutes",
   },
-]
+];
 
 export default function RecipeDetail() {
-  const [activeTab, setActiveTab] = useState('all')
-  const [cookingNote, setCookingNote] = useState('')
+  const [activeTab, setActiveTab] = useState("all");
+  const [cookingNote, setCookingNote] = useState("");
 
   return (
     <div className="min-h-screen bg-background">
@@ -171,7 +193,9 @@ export default function RecipeDetail() {
               className="h-12 w-12 rounded-full object-cover"
             />
             <div>
-              <p className="font-semibold text-foreground">{recipeData.author.name}</p>
+              <p className="font-semibold text-foreground">
+                {recipeData.author.name}
+              </p>
               <button className="text-sm text-primary hover:text-primary/80">
                 + Follow
               </button>
@@ -182,12 +206,16 @@ export default function RecipeDetail() {
             <div className="flex items-center gap-1">
               <Clock className="h-4 w-4" />
               <span>Time</span>
-              <span className="font-medium text-foreground">{recipeData.time}</span>
+              <span className="font-medium text-foreground">
+                {recipeData.time}
+              </span>
             </div>
             <div className="flex items-center gap-1">
               <FileText className="h-4 w-4" />
               <span>Notes</span>
-              <span className="font-medium text-foreground">{recipeData.notes} community notes</span>
+              <span className="font-medium text-foreground">
+                {recipeData.notes} community notes
+              </span>
             </div>
             <div className="flex items-center gap-1">
               <span>Rating</span>
@@ -197,8 +225,8 @@ export default function RecipeDetail() {
                     key={star}
                     className={`h-4 w-4 ${
                       star <= Math.floor(recipeData.rating)
-                        ? 'fill-amber-400 text-amber-400'
-                        : 'fill-gray-200 text-gray-200'
+                        ? "fill-amber-400 text-amber-400"
+                        : "fill-gray-200 text-gray-200"
                     }`}
                   />
                 ))}
@@ -212,7 +240,9 @@ export default function RecipeDetail() {
           {/* Ingredients */}
           <div className="lg:col-span-1">
             <div className="rounded-xl border border-border p-6">
-              <h2 className="mb-4 font-semibold text-foreground">Ingredients</h2>
+              <h2 className="mb-4 font-semibold text-foreground">
+                Ingredients
+              </h2>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 {recipeData.ingredients.map((ingredient, index) => (
                   <li key={index} className="flex items-start gap-2">
@@ -242,8 +272,12 @@ export default function RecipeDetail() {
             <div className="space-y-8">
               {recipeData.steps.map((step) => (
                 <div key={step.number}>
-                  <h3 className="mb-3 font-semibold text-foreground">Step {step.number}</h3>
-                  <p className="mb-4 text-muted-foreground leading-relaxed">{step.text}</p>
+                  <h3 className="mb-3 font-semibold text-foreground">
+                    Step {step.number}
+                  </h3>
+                  <p className="mb-4 text-muted-foreground leading-relaxed">
+                    {step.text}
+                  </p>
                   {step.image && (
                     <div className="overflow-hidden rounded-xl">
                       <img
@@ -261,8 +295,10 @@ export default function RecipeDetail() {
 
         {/* Cooking Notes Section */}
         <div className="mt-12">
-          <h2 className="mb-4 text-xl font-semibold text-foreground">Cooking note</h2>
-          
+          <h2 className="mb-4 text-xl font-semibold text-foreground">
+            Cooking note
+          </h2>
+
           <div className="mb-6 rounded-xl border border-border p-4">
             <textarea
               value={cookingNote}
@@ -280,17 +316,17 @@ export default function RecipeDetail() {
           {/* Tabs */}
           <div className="mb-6 flex gap-6 border-b border-border">
             {[
-              { id: 'all', label: 'All Notes (32)' },
-              { id: 'about', label: 'About recipe (20)' },
-              { id: 'private', label: 'Private (2)' },
+              { id: "all", label: "All Notes (32)" },
+              { id: "about", label: "About recipe (20)" },
+              { id: "private", label: "Private (2)" },
             ].map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 className={`border-b-2 pb-3 text-sm font-medium transition-colors ${
                   activeTab === tab.id
-                    ? 'border-primary text-primary'
-                    : 'border-transparent text-muted-foreground hover:text-foreground'
+                    ? "border-primary text-primary"
+                    : "border-transparent text-muted-foreground hover:text-foreground"
                 }`}
               >
                 {tab.label}
@@ -309,16 +345,22 @@ export default function RecipeDetail() {
                 />
                 <div className="flex-1">
                   <div className="flex items-center gap-2">
-                    <span className="font-semibold text-foreground">{comment.author}</span>
+                    <span className="font-semibold text-foreground">
+                      {comment.author}
+                    </span>
                     {comment.isAuthor && (
                       <span className="rounded-full bg-primary/10 px-2 py-0.5 text-xs text-primary">
                         Author
                       </span>
                     )}
-                    <span className="text-sm text-muted-foreground">{comment.time}</span>
+                    <span className="text-sm text-muted-foreground">
+                      {comment.time}
+                    </span>
                   </div>
-                  <p className="mt-1 text-sm text-muted-foreground">{comment.text}</p>
-                  
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    {comment.text}
+                  </p>
+
                   {comment.images && (
                     <div className="mt-3 flex gap-2">
                       {comment.images.map((img, idx) => (
@@ -354,7 +396,9 @@ export default function RecipeDetail() {
 
         {/* Recently Viewed */}
         <div className="mt-12">
-          <h2 className="mb-6 text-xl font-semibold text-foreground">Your Recently Viewed</h2>
+          <h2 className="mb-6 text-xl font-semibold text-foreground">
+            Your Recently Viewed
+          </h2>
           <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
             {recentlyViewed.map((recipe) => (
               <RecipeCard
@@ -371,5 +415,5 @@ export default function RecipeDetail() {
 
       <Footer />
     </div>
-  )
+  );
 }

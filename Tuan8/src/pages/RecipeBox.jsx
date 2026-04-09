@@ -1,79 +1,88 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import RecipeCard from '../components/RecipeCard'
-import Pagination from '../components/Pagination'
-import { ChevronRight, Share2 } from 'lucide-react'
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import RecipeCard from "../components/RecipeCard";
+import Pagination from "../components/Pagination";
+import { ChevronRight, Share2 } from "lucide-react";
 
 const userData = {
   name: "Emma Gonzalez",
-  avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop',
+  avatar:
+    "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop",
   bio: "Emma Gonzalez is a deputy editor at Chefify, bringing her expertise as a former cooking editor at The Los Angeles Times. She is also an accomplished author, contributing to numerous cookbooks and food publications. Originally from East Los Angeles, Emma now resides in New York City, where she explores a wide range of culinary delights.",
-  subscribers: '6.5k',
-}
+  subscribers: "6.5k",
+};
 
 const savedRecipes = [
   {
-    id: 'italian-tomato-salad',
-    title: 'Italian-style tomato salad',
-    image: 'https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?w=400&h=400&fit=crop',
-    time: '14 minutes',
+    id: "italian-tomato-salad",
+    title: "Italian-style tomato salad",
+    image:
+      "https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?w=400&h=400&fit=crop",
+    time: "14 minutes",
   },
   {
-    id: 'vegetable-shrimp-spaghetti',
-    title: 'Vegetable and shrimp spaghetti',
-    image: 'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=400&h=400&fit=crop',
-    time: '15 minutes',
+    id: "vegetable-shrimp-spaghetti",
+    title: "Vegetable and shrimp spaghetti",
+    image:
+      "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=400&h=400&fit=crop",
+    time: "15 minutes",
   },
   {
-    id: 'lotus-delight',
-    title: 'Lotus delight salad',
-    image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=400&fit=crop',
-    time: '20 minutes',
+    id: "lotus-delight",
+    title: "Lotus delight salad",
+    image:
+      "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=400&fit=crop",
+    time: "20 minutes",
   },
   {
-    id: 'snack-cakes',
-    title: 'Snack cakes',
-    image: 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400&h=400&fit=crop',
-    time: '21 minutes',
+    id: "snack-cakes",
+    title: "Snack cakes",
+    image:
+      "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400&h=400&fit=crop",
+    time: "21 minutes",
   },
   {
-    id: 'cabbage-shrimp-salad',
-    title: 'Salad with cabbage and shrimp',
-    image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=400&fit=crop',
-    time: '32 minutes',
+    id: "cabbage-shrimp-salad",
+    title: "Salad with cabbage and shrimp",
+    image:
+      "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=400&fit=crop",
+    time: "32 minutes",
   },
   {
-    id: 'bean-shrimp-potato',
-    title: 'Bean, shrimp, and potato salad',
-    image: 'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=400&h=400&fit=crop',
-    time: '32 minutes',
+    id: "bean-shrimp-potato",
+    title: "Bean, shrimp, and potato salad",
+    image:
+      "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=400&h=400&fit=crop",
+    time: "32 minutes",
   },
   {
-    id: 'sunny-side-eggs',
-    title: 'Sunny-side up fried eggs',
-    image: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?w=400&h=400&fit=crop',
-    time: '32 minutes',
+    id: "sunny-side-eggs",
+    title: "Sunny-side up fried eggs",
+    image:
+      "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=400&h=400&fit=crop",
+    time: "32 minutes",
   },
   {
-    id: 'lotus-salad-2',
-    title: 'Lotus delight salad',
-    image: 'https://images.unsplash.com/photo-1547496502-affa22d38842?w=400&h=400&fit=crop',
-    time: '32 minutes',
+    id: "lotus-salad-2",
+    title: "Lotus delight salad",
+    image:
+      "https://images.unsplash.com/photo-1547496502-affa22d38842?w=400&h=400&fit=crop",
+    time: "32 minutes",
     isBookmarked: true,
   },
-]
+];
 
 const tabs = [
-  { id: 'saved', label: 'Saved Recipes' },
-  { id: 'folders', label: 'Folders' },
-  { id: 'by-author', label: 'Recipes by Genevieve' },
-]
+  { id: "saved", label: "Saved Recipes" },
+  { id: "folders", label: "Folders" },
+  { id: "by-author", label: "Recipes by Genevieve" },
+];
 
 export default function RecipeBox() {
-  const [activeTab, setActiveTab] = useState('saved')
-  const [currentPage, setCurrentPage] = useState(1)
+  const [activeTab, setActiveTab] = useState("saved");
+  const [currentPage, setCurrentPage] = useState(1);
 
   return (
     <div className="min-h-screen bg-background">
@@ -133,8 +142,8 @@ export default function RecipeBox() {
                 onClick={() => setActiveTab(tab.id)}
                 className={`border-b-2 pb-3 text-sm font-medium transition-colors ${
                   activeTab === tab.id
-                    ? 'border-primary text-primary'
-                    : 'border-transparent text-muted-foreground hover:text-foreground'
+                    ? "border-primary text-primary"
+                    : "border-transparent text-muted-foreground hover:text-foreground"
                 }`}
               >
                 {tab.label}
@@ -169,5 +178,5 @@ export default function RecipeBox() {
 
       <Footer />
     </div>
-  )
+  );
 }

@@ -1,37 +1,37 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import { ChevronRight, Check, CreditCard } from 'lucide-react'
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import { ChevronRight, Check, CreditCard } from "lucide-react";
 
 const benefits = [
-  '20,000+ recipes to suit all tastes and skill levels',
-  'Filter for diets, cook times, and more',
-  'Personal Recipe Box for favorites',
-  'Gain exclusive access to our subscriber-only mobile app.',
-]
+  "20,000+ recipes to suit all tastes and skill levels",
+  "Filter for diets, cook times, and more",
+  "Personal Recipe Box for favorites",
+  "Gain exclusive access to our subscriber-only mobile app.",
+];
 
 const subscriptionFeatures = [
   {
-    title: 'Cooking',
-    description: 'Enjoy recipes, advice and inspiration for any occasion.',
+    title: "Cooking",
+    description: "Enjoy recipes, advice and inspiration for any occasion.",
   },
   {
-    title: 'Wirecutter',
-    description: 'Explore independent reviews for thousands of products.',
+    title: "Wirecutter",
+    description: "Explore independent reviews for thousands of products.",
   },
   {
-    title: 'Games',
-    description: 'Unwind with Spelling Bee, Wordle, The Crossword',
+    title: "Games",
+    description: "Unwind with Spelling Bee, Wordle, The Crossword",
   },
   {
-    title: 'The Athletic',
-    description: 'Discover in-depth, personalized sports journalism.',
+    title: "The Athletic",
+    description: "Discover in-depth, personalized sports journalism.",
   },
-]
+];
 
 export default function Subscribe() {
-  const [selectedPlan, setSelectedPlan] = useState('monthly')
+  const [selectedPlan, setSelectedPlan] = useState("monthly");
 
   return (
     <div className="min-h-screen bg-background">
@@ -40,7 +40,10 @@ export default function Subscribe() {
       <main className="mx-auto max-w-4xl px-4 py-8 lg:px-8">
         {/* Breadcrumb */}
         <nav className="mb-8 flex items-center gap-2 text-sm">
-          <Link to="/recipes" className="text-muted-foreground hover:text-foreground">
+          <Link
+            to="/recipes"
+            className="text-muted-foreground hover:text-foreground"
+          >
             Recipes
           </Link>
           <ChevronRight className="h-4 w-4 text-muted-foreground" />
@@ -64,14 +67,18 @@ export default function Subscribe() {
                   <div className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
                     <Check className="h-3 w-3 text-primary" />
                   </div>
-                  <span className="text-sm text-muted-foreground">{benefit}</span>
+                  <span className="text-sm text-muted-foreground">
+                    {benefit}
+                  </span>
                 </li>
               ))}
             </ul>
 
             {/* Price */}
             <div className="mb-6">
-              <p className="text-2xl font-bold text-foreground">0.25USD / Week</p>
+              <p className="text-2xl font-bold text-foreground">
+                0.25USD / Week
+              </p>
               <p className="text-sm text-muted-foreground">
                 Billed as $1 every 4 weeks for the first year
               </p>
@@ -108,8 +115,12 @@ export default function Subscribe() {
                 key={index}
                 className="rounded-xl border border-border p-6 text-center"
               >
-                <h3 className="mb-2 font-semibold text-foreground">{feature.title}</h3>
-                <p className="text-sm text-muted-foreground">{feature.description}</p>
+                <h3 className="mb-2 font-semibold text-foreground">
+                  {feature.title}
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  {feature.description}
+                </p>
               </div>
             ))}
           </div>
@@ -119,11 +130,24 @@ export default function Subscribe() {
         <div className="mt-16 text-center">
           {/* Logo */}
           <div className="mb-4 flex justify-center">
-            <svg width="48" height="48" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20 8C20 8 16 4 12 4C8 4 4 8 4 12C4 16 8 20 12 20H28C32 20 36 16 36 12C36 8 32 4 28 4C24 4 20 8 20 8Z" fill="#F25F9B"/>
-              <path d="M12 20V32C12 34 14 36 16 36H24C26 36 28 34 28 32V20" stroke="#F25F9B" strokeWidth="2"/>
-              <path d="M16 24H24" stroke="#F25F9B" strokeWidth="2"/>
-              <path d="M16 28H24" stroke="#F25F9B" strokeWidth="2"/>
+            <svg
+              width="48"
+              height="48"
+              viewBox="0 0 40 40"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M20 8C20 8 16 4 12 4C8 4 4 8 4 12C4 16 8 20 12 20H28C32 20 36 16 36 12C36 8 32 4 28 4C24 4 20 8 20 8Z"
+                fill="#F25F9B"
+              />
+              <path
+                d="M12 20V32C12 34 14 36 16 36H24C26 36 28 34 28 32V20"
+                stroke="#F25F9B"
+                strokeWidth="2"
+              />
+              <path d="M16 24H24" stroke="#F25F9B" strokeWidth="2" />
+              <path d="M16 28H24" stroke="#F25F9B" strokeWidth="2" />
             </svg>
           </div>
           <span className="text-xl font-bold text-primary">Chefify</span>
@@ -132,16 +156,17 @@ export default function Subscribe() {
             Subscribe to Chefify Cooking only
           </h2>
           <p className="mx-auto mt-2 max-w-xl text-muted-foreground">
-            Enjoy thousands of delicious recipes for every taste, plus advice and inspiration daily.
+            Enjoy thousands of delicious recipes for every taste, plus advice
+            and inspiration daily.
           </p>
 
           {/* Plan Selection */}
           <div className="mx-auto mt-8 max-w-md space-y-3">
             <label
               className={`flex cursor-pointer items-center justify-between rounded-lg border p-4 transition-colors ${
-                selectedPlan === 'monthly'
-                  ? 'border-primary bg-primary/5'
-                  : 'border-border hover:border-primary/50'
+                selectedPlan === "monthly"
+                  ? "border-primary bg-primary/5"
+                  : "border-border hover:border-primary/50"
               }`}
             >
               <div className="flex items-center gap-3">
@@ -149,19 +174,21 @@ export default function Subscribe() {
                   type="radio"
                   name="plan"
                   value="monthly"
-                  checked={selectedPlan === 'monthly'}
+                  checked={selectedPlan === "monthly"}
                   onChange={(e) => setSelectedPlan(e.target.value)}
                   className="h-4 w-4 text-primary focus:ring-primary"
                 />
-                <span className="text-foreground">$2/month (Billed every 4 weeks)</span>
+                <span className="text-foreground">
+                  $2/month (Billed every 4 weeks)
+                </span>
               </div>
             </label>
 
             <label
               className={`flex cursor-pointer items-center justify-between rounded-lg border p-4 transition-colors ${
-                selectedPlan === 'yearly'
-                  ? 'border-primary bg-primary/5'
-                  : 'border-border hover:border-primary/50'
+                selectedPlan === "yearly"
+                  ? "border-primary bg-primary/5"
+                  : "border-border hover:border-primary/50"
               }`}
             >
               <div className="flex items-center gap-3">
@@ -169,11 +196,13 @@ export default function Subscribe() {
                   type="radio"
                   name="plan"
                   value="yearly"
-                  checked={selectedPlan === 'yearly'}
+                  checked={selectedPlan === "yearly"}
                   onChange={(e) => setSelectedPlan(e.target.value)}
                   className="h-4 w-4 text-primary focus:ring-primary"
                 />
-                <span className="text-foreground">$20/year (Billed one annually)</span>
+                <span className="text-foreground">
+                  $20/year (Billed one annually)
+                </span>
               </div>
             </label>
           </div>
@@ -190,5 +219,5 @@ export default function Subscribe() {
 
       <Footer />
     </div>
-  )
+  );
 }

@@ -1,20 +1,24 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { Search, Menu, X } from 'lucide-react'
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { Search, Menu, X } from "lucide-react";
 
-export default function Header({ variant = 'default', onLoginClick, onSubscribeClick }) {
-  const [searchQuery, setSearchQuery] = useState('')
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+export default function Header({
+  variant = "default",
+  onLoginClick,
+  onSubscribeClick,
+}) {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const isLoggedIn = variant === 'logged-in'
+  const isLoggedIn = variant === "logged-in";
 
   const navLinks = [
-    { label: 'What to cook', href: '/recipes' },
-    { label: 'Recipes', href: '/recipes' },
-    { label: 'Ingredients', href: '/ingredients' },
-    { label: 'Occasions', href: '/occasions' },
-    { label: 'About Us', href: '/about' },
-  ]
+    { label: "What to cook", href: "/recipes" },
+    { label: "Recipes", href: "/recipes" },
+    { label: "Ingredients", href: "/ingredients" },
+    { label: "Occasions", href: "/occasions" },
+    { label: "About Us", href: "/about" },
+  ];
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white border-b border-border">
@@ -22,11 +26,24 @@ export default function Header({ variant = 'default', onLoginClick, onSubscribeC
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
           <div className="flex h-10 w-10 items-center justify-center">
-            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20 8C20 8 16 4 12 4C8 4 4 8 4 12C4 16 8 20 12 20H28C32 20 36 16 36 12C36 8 32 4 28 4C24 4 20 8 20 8Z" fill="#F25F9B"/>
-              <path d="M12 20V32C12 34 14 36 16 36H24C26 36 28 34 28 32V20" stroke="#F25F9B" strokeWidth="2"/>
-              <path d="M16 24H24" stroke="#F25F9B" strokeWidth="2"/>
-              <path d="M16 28H24" stroke="#F25F9B" strokeWidth="2"/>
+            <svg
+              width="40"
+              height="40"
+              viewBox="0 0 40 40"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M20 8C20 8 16 4 12 4C8 4 4 8 4 12C4 16 8 20 12 20H28C32 20 36 16 36 12C36 8 32 4 28 4C24 4 20 8 20 8Z"
+                fill="#F25F9B"
+              />
+              <path
+                d="M12 20V32C12 34 14 36 16 36H24C26 36 28 34 28 32V20"
+                stroke="#F25F9B"
+                strokeWidth="2"
+              />
+              <path d="M16 24H24" stroke="#F25F9B" strokeWidth="2" />
+              <path d="M16 28H24" stroke="#F25F9B" strokeWidth="2" />
             </svg>
           </div>
           <span className="text-xl font-bold text-primary">Chefify</span>
@@ -67,10 +84,24 @@ export default function Header({ variant = 'default', onLoginClick, onSubscribeC
                 to="/recipe-box"
                 className="hidden sm:flex items-center gap-2 rounded-full border border-primary px-4 py-2 text-sm font-medium text-primary hover:bg-primary/5 transition-colors"
               >
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="2" y="3" width="12" height="10" rx="1" stroke="currentColor" strokeWidth="1.5"/>
-                  <path d="M5 6H11" stroke="currentColor" strokeWidth="1.5"/>
-                  <path d="M5 9H9" stroke="currentColor" strokeWidth="1.5"/>
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect
+                    x="2"
+                    y="3"
+                    width="12"
+                    height="10"
+                    rx="1"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                  />
+                  <path d="M5 6H11" stroke="currentColor" strokeWidth="1.5" />
+                  <path d="M5 9H9" stroke="currentColor" strokeWidth="1.5" />
                 </svg>
                 Your Recipe Box
               </Link>
@@ -130,7 +161,7 @@ export default function Header({ variant = 'default', onLoginClick, onSubscribeC
                 className="w-full rounded-full border border-border bg-secondary py-2 pl-10 pr-4 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
               />
             </div>
-            
+
             {/* Mobile Nav Links */}
             <nav className="flex flex-col gap-3">
               {navLinks.map((link) => (
@@ -148,5 +179,5 @@ export default function Header({ variant = 'default', onLoginClick, onSubscribeC
         </div>
       )}
     </header>
-  )
+  );
 }

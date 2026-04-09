@@ -1,76 +1,85 @@
-import { useState } from 'react'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import RecipeFilters from '../components/recipes/RecipeFilters'
-import RecipeGrid from '../components/recipes/RecipeGrid'
-import Pagination from '../components/Pagination'
-import { ChevronDown } from 'lucide-react'
+import { useState } from "react";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import RecipeFilters from "../components/recipes/RecipeFilters";
+import RecipeGrid from "../components/recipes/RecipeGrid";
+import Pagination from "../components/Pagination";
+import { ChevronDown } from "lucide-react";
 
 const allRecipes = [
   {
-    id: 'cucumber-salad',
-    title: 'Cucumber salad, cherry tomatoes',
-    image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&h=400&fit=crop',
-    time: '32 minutes',
+    id: "cucumber-salad",
+    title: "Cucumber salad, cherry tomatoes",
+    image:
+      "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&h=400&fit=crop",
+    time: "32 minutes",
   },
   {
-    id: 'italian-tomato-salad',
-    title: 'Italian-style tomato salad',
-    image: 'https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?w=400&h=400&fit=crop',
-    time: '32 minutes',
+    id: "italian-tomato-salad",
+    title: "Italian-style tomato salad",
+    image:
+      "https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?w=400&h=400&fit=crop",
+    time: "32 minutes",
   },
   {
-    id: 'potato-salad',
-    title: 'Potato Salad',
-    image: 'https://images.unsplash.com/photo-1623428187969-5da2dcea5ebf?w=400&h=400&fit=crop',
-    time: '32 minutes',
+    id: "potato-salad",
+    title: "Potato Salad",
+    image:
+      "https://images.unsplash.com/photo-1623428187969-5da2dcea5ebf?w=400&h=400&fit=crop",
+    time: "32 minutes",
   },
   {
-    id: 'cabbage-shrimp-salad',
-    title: 'Salad with cabbage and shrimp',
-    image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=400&fit=crop',
-    time: '32 minutes',
+    id: "cabbage-shrimp-salad",
+    title: "Salad with cabbage and shrimp",
+    image:
+      "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=400&fit=crop",
+    time: "32 minutes",
   },
   {
-    id: 'five-color-salad',
-    title: 'Five-color salad',
-    image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=400&fit=crop',
-    time: '32 minutes',
+    id: "five-color-salad",
+    title: "Five-color salad",
+    image:
+      "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=400&fit=crop",
+    time: "32 minutes",
   },
   {
-    id: 'corn-salad',
-    title: 'Corn Salad',
-    image: 'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=400&h=400&fit=crop',
-    time: '32 minutes',
+    id: "corn-salad",
+    title: "Corn Salad",
+    image:
+      "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=400&h=400&fit=crop",
+    time: "32 minutes",
   },
   {
-    id: 'cabbage-shrimp-2',
-    title: 'Salad with cabbage and shrimp',
-    image: 'https://images.unsplash.com/photo-1607532941433-304659e8198a?w=400&h=400&fit=crop',
-    time: '32 minutes',
+    id: "cabbage-shrimp-2",
+    title: "Salad with cabbage and shrimp",
+    image:
+      "https://images.unsplash.com/photo-1607532941433-304659e8198a?w=400&h=400&fit=crop",
+    time: "32 minutes",
   },
   {
-    id: 'lotus-delight-salad',
-    title: 'Lotus delight salad',
-    image: 'https://images.unsplash.com/photo-1547496502-affa22d38842?w=400&h=400&fit=crop',
-    time: '32 minutes',
+    id: "lotus-delight-salad",
+    title: "Lotus delight salad",
+    image:
+      "https://images.unsplash.com/photo-1547496502-affa22d38842?w=400&h=400&fit=crop",
+    time: "32 minutes",
   },
   {
-    id: 'avocado-salad',
-    title: 'Avocado Salad',
-    image: 'https://images.unsplash.com/photo-1604909052743-94e838986d24?w=400&h=400&fit=crop',
-    time: '32 minutes',
+    id: "avocado-salad",
+    title: "Avocado Salad",
+    image:
+      "https://images.unsplash.com/photo-1604909052743-94e838986d24?w=400&h=400&fit=crop",
+    time: "32 minutes",
   },
-]
+];
 
 export default function Recipes() {
-  const [currentPage, setCurrentPage] = useState(1)
-  const [sortBy, setSortBy] = useState('A-Z')
+  const [currentPage, setCurrentPage] = useState(1);
+  const [sortBy, setSortBy] = useState("A-Z");
   const [filters, setFilters] = useState({
     types: [],
     timeRange: [30, 50],
     ratings: [],
-  })
+  });
 
   return (
     <div className="min-h-screen bg-background">
@@ -124,5 +133,5 @@ export default function Recipes() {
 
       <Footer />
     </div>
-  )
+  );
 }
