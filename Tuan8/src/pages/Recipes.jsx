@@ -5,6 +5,8 @@ import RecipeFilters from "../components/recipes/RecipeFilters";
 import RecipeGrid from "../components/recipes/RecipeGrid";
 import Pagination from "../components/Pagination";
 import { ChevronDown } from "lucide-react";
+import { useSearchParams } from "react-router-dom";
+import NoResults from "../components/recipes/NoResults";
 
 const allRecipes = [
   {
@@ -73,6 +75,9 @@ const allRecipes = [
 ];
 
 export default function Recipes() {
+  const [searchParams] = useSearchParams();
+  const searchQuery = searchParams.get("search") || "";
+
   const [currentPage, setCurrentPage] = useState(1);
   const [sortBy, setSortBy] = useState("A-Z");
   const [filters, setFilters] = useState({
@@ -81,54 +86,65 @@ export default function Recipes() {
     ratings: [],
   });
 
+  const filteredRecipes = allRecipes.filter((recipe) =>
+    recipe.title.toLowerCase().includes(searchQuery.toLowerCase()),
+  );
+
   return (
     <div className="min-h-screen bg-background">
       <Header variant="logged-in" />
 
       <main className="mx-auto max-w-7xl px-4 py-8 lg:px-8">
-        <div className="flex flex-col gap-8 lg:flex-row">
-          {/* Sidebar Filters */}
-          <aside className="w-full lg:w-72 flex-shrink-0">
-            <RecipeFilters filters={filters} onFiltersChange={setFilters} />
-          </aside>
+        {searchQuery && filteredRecipes.length === 0 ? (
+          <NoResults searchQuery={searchQuery} />
+        ) : (
+          <div className="flex flex-col gap-8 lg:flex-row">
+            {/* Sidebar Filters */}
+            <aside className="w-full lg:w-72 flex-shrink-0">
+              <RecipeFilters filters={filters} onFiltersChange={setFilters} />
+            </aside>
 
-          {/* Main Content */}
-          <div className="flex-1">
-            {/* Header */}
-            <div className="mb-6 flex items-center justify-between">
-              <h1 className="text-2xl font-bold text-foreground">
-                Salad <span className="text-muted-foreground">(32)</span>
-              </h1>
+            {/* Main Content */}
+            <div className="flex-1">
+              {/* Header */}
+              <div className="mb-6 flex items-center justify-between">
+                <h1 className="text-2xl font-bold text-foreground">
+                  {searchQuery ? searchQuery : "Salad"}{" "}
+                  <span className="text-muted-foreground">
+                    ({filteredRecipes.length})
+                  </span>
+                </h1>
 
-              {/* Sort Dropdown */}
-              <div className="relative">
-                <select
-                  value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value)}
-                  className="appearance-none rounded-lg border border-border bg-white px-4 py-2 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-                >
-                  <option value="A-Z">A-Z</option>
-                  <option value="Z-A">Z-A</option>
-                  <option value="newest">Newest</option>
-                  <option value="popular">Most Popular</option>
-                </select>
-                <ChevronDown className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground pointer-events-none" />
+                {/* Sort Dropdown */}
+                <div className="relative">
+                  <select
+                    value={sortBy}
+                    onChange={(e) => setSortBy(e.target.value)}
+                    className="appearance-none rounded-lg border border-border bg-white px-4 py-2 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                  >
+                    <option value="A-Z">A-Z</option>
+                    <option value="Z-A">Z-A</option>
+                    <option value="newest">Newest</option>
+                    <option value="popular">Most Popular</option>
+                  </select>
+                  <ChevronDown className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground pointer-events-none" />
+                </div>
+              </div>
+
+              {/* Recipe Grid */}
+              <RecipeGrid recipes={allRecipes} />
+
+              {/* Pagination */}
+              <div className="mt-8">
+                <Pagination
+                  currentPage={currentPage}
+                  totalPages={11}
+                  onPageChange={setCurrentPage}
+                />
               </div>
             </div>
-
-            {/* Recipe Grid */}
-            <RecipeGrid recipes={allRecipes} />
-
-            {/* Pagination */}
-            <div className="mt-8">
-              <Pagination
-                currentPage={currentPage}
-                totalPages={11}
-                onPageChange={setCurrentPage}
-              />
-            </div>
           </div>
-        </div>
+        )}
       </main>
 
       <Footer />

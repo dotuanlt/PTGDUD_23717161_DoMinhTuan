@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Search, Menu, X } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export default function Header({
   variant = "default",
@@ -9,6 +10,7 @@ export default function Header({
 }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const isLoggedIn = variant === "logged-in";
 
@@ -19,6 +21,13 @@ export default function Header({
     { label: "Occasions", href: "/occasions" },
     { label: "About Us", href: "/about" },
   ];
+
+  const handleSearch = (e) => {
+    if (e.key === "Enter" && searchQuery.trim()) {
+      navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
+    }
+  };
+
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white border-b border-border">
@@ -58,6 +67,7 @@ export default function Header({
               placeholder="What would you like to cook?"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyDown={handleSearch}
               className="w-full rounded-full border border-border bg-secondary py-2 pl-10 pr-4 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
@@ -158,6 +168,7 @@ export default function Header({
                 placeholder="What would you like to cook?"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyDown={handleSearch}
                 className="w-full rounded-full border border-border bg-secondary py-2 pl-10 pr-4 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
               />
             </div>
